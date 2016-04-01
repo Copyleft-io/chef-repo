@@ -33,10 +33,19 @@ directory node['base']['directory'] do
   action :create
 end
 
-# CREATE TMP/DEPLOY DIRECTORY
+# CREATE DEPLOY DIRECTORY
 # This is our default location where downloaded packages
 # will be staged for deployment
 directory  node['base']['deploy_directory'] do
+  owner node['base']['user']
+  group node['base']['group']
+  mode '0755'
+  action :create
+end
+
+# CREATE LOGS DIRECTORY
+# This is our default location for logs
+directory  node['base']['logs_directory'] do
   owner node['base']['user']
   group node['base']['group']
   mode '0755'

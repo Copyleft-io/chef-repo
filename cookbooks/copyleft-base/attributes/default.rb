@@ -8,6 +8,7 @@ default['base']['group'] = 'zeus'
 # CONFIGURE BASE DIRECTORY
 default['base']['directory'] = '/opt/zeus'
 default['base']['deploy_directory'] = '/opt/zeus/deploy'
+default['base']['logs_directory'] = '/opt/zeus/logs'
 
 # PACKAGES
 default['base']['apt']['install_packages'] =  %w{ curl git gparted logwatch netcat vim unzip zip}
