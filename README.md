@@ -29,3 +29,64 @@ Roles provide logical grouping of cookbooks and other roles. A sample role can b
 Getting Started
 -------------------------
 Now that you have the chef-repo ready to go, check out [Learn Chef](https://learn.chef.io/) to proceed with your workstation setup. If you have any questions about Chef you can always ask [our support team](https://www.chef.io/support/) for a helping hand.
+
+
+The Copyleft chef-repo
+=======================
+
+Copyleft generally defaults to using Ubuntu (currently v14.04) or CentOS (currently v7) as our base Linux OS.
+
+Ubuntu is a bit less conservative with a shorter release cycle, so new software will almost certainly land in the Ubuntu repos before CentOS users get it.
+
+CentOS (RHEL) is fairly conservative when it comes to upgrading software, privileging consistency and security over being on the cutting edge.
+
+copyleft-patterns
+-----------------------
+(Simple vs. Easy)
+We believe in keeping things simple.
+Here are a few things that we have learned during our time managing chef in the wild...
+
+- Keep Role Assignment Simple... one role per node
+- Keep Attributes Simple... by Cookbook (default) and by Environment (default)
+- Keep Versioning Simple... version Cookbooks and manage their deployment by Environment
+- ...more to come
+
+
+copyleft cookbooks
+-----------------------
+
+  cookbooks/copyleft-base
+  # This is our base cookbook that we use to bootstrap a node and layer additional cookbooks and roles
+  # - install default packages
+  # - configure security
+  # - configure directory as a service (jumpcloud)
+  # - configure zeus... our base user account for managing applications / services
+  #   (if you are going to try and rule the clouds, you might as well invite the god of thunder)
+
+  cookbooks/copyleft-burton
+  # burton is our hubot (a.k.a. Jack Burton)
+
+  cookbooks/copyleft-elastic
+  # base install of elastic stack
+  # - elastic
+  # - logstash
+  # - kibana
+  # - beats (filebeats / topbeats)
+
+  cookbooks/copyleft-java     
+  # base install of java
+
+  cookbooks/copyleft-nginx
+  # base install of nginx
+
+  cookbooks/copyleft-nodejs
+  # base install of nodejs, npm, and pm2
+
+  cookbooks/copyleft-postgres
+  # base install and configuration of postgresql database
+
+  cookbooks/copyleft-ruby
+  # base install and configuration of ruby, rvm, ruby-gems and bundler
+
+  cookbooks/copyleft-tomcat
+  # base install and configuration of tomcat
