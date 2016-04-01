@@ -1,0 +1,41 @@
+# This file contains the auditctl rules that are loaded
+# whenever the audit daemon is started via the initscripts.
+# The rules are simply the parameters that would be passed
+# to auditctl.
+
+# First rule - delete all
+-D
+
+# Increase the buffers to survive stress events.
+# Make this bigger for busy systems
+-b 320
+
+# Feel free to add below this line. See auditctl man page
+
+##############################
+#### Copyleft Audit Rules ####
+##############################
+
+# To list all the rules
+# sudo auditctl -l
+
+# To search the audit logs for specific events, you can use the
+# command ausearch. For example...
+# To search the audit logs for all events labeled with the key sysconfig_access
+# sudo ausearch -k sysconfig_access
+
+
+# RULE: Hosts File Change
+# The rule below asks the audit system to watch for any write access
+# or attribute change to the file /etc/hosts and log them to the audit
+# log with the custom key string specified by us — hosts_file_change
+
+-w /etc/hosts -p wa -k hosts_file_change
+
+
+# RULE: Sysconfig Access
+# The rule below will add a watch to the directory /etc/sysconfig and all
+# files and directories beneath it for any read, write, or attribute change
+# access. It will also label log messages with a custom key sysconfig_access.
+
+-w /etc/sysconfig/ -p rwa -k sysconfig_access

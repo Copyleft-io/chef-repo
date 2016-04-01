@@ -1,0 +1,56 @@
+# THIS FILE IS MAINTAINED BY CHEF
+# Node: <%= node['hostname'] %>
+# Environment: <%= node.chef_environment %>
+#
+#
+Defaults        requiretty
+Defaults:zeus   !requiretty
+Defaults:apache !requiretty
+Defaults        env_reset
+Defaults        exempt_group=sudo
+Defaults        mail_badpass
+Defaults        secure_path="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+
+
+# Host alias specification
+
+
+# User alias specification
+
+
+# Cmnd alias specification
+Cmnd_Alias SYSCMDS      = /usr/bin/chef-client
+
+
+# User privilege specification
+root    ALL=(ALL:ALL) ALL
+
+
+# Members of the admin group may gain root privileges
+%admin ALL=(ALL) ALL
+
+
+# Allow members of group sudo to execute any command
+%sudo   ALL=(ALL) NOPASSWD:ALL
+
+
+# Environment Specific Roles for Environment: <%= node.chef_environment %>
+<% case node.chef_environment
+when 'dev' %>
+%dev_sudoers  ALL=SYSCMDS
+<% when 'tst' %>
+%tst_sudoers  ALL=SYSCMDS
+<% when 'prd' %>
+%prd_sudoers  ALL=SYSCMDS
+<% end %>
+
+
+# Host Specific Roles for Host: <%= node['hostname'] %>
+<% case node.['hostname']
+when 'server001' %>
+apache  ALL=(zeus) NOPASSWD: ALL
+<% when 'server002' %>
+apache  ALL=(zeus) NOPASSWD: ALL
+<% when 'server003' %>
+apache  ALL=(zeus) NOPASSWD: ALL
+<% end %>
