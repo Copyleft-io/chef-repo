@@ -1,0 +1,6 @@
+source "https://supermarket.chef.io"
+
+metadata
+
+cookbook 'copyleft-base', path: '../copyleft-base'
+cookbook 'copyleft-java', path: '../copyleft-java'

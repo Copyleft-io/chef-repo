@@ -1,0 +1,12 @@
+#!/bin/bash
+
+. ~/.bash_profile
+
+mystatus=0
+
+while [ $mystatus -eq "0" ]
+do
+ killall java
+ mystatus=$?
+ sleep 1
+done
