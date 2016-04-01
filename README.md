@@ -55,38 +55,38 @@ Here are a few things that we have learned during our time managing chef in the 
 copyleft cookbooks
 -----------------------
 
-  cookbooks/copyleft-base
-  # This is our base cookbook that we use to bootstrap a node and layer additional cookbooks and roles
-  # - install default packages
-  # - configure security
-  # - configure directory as a service (jumpcloud)
-  # - configure zeus... our base user account for managing applications / services
-  #   (if you are going to try and rule the clouds, you might as well invite the god of thunder)
+    cookbooks/copyleft-base
+    # This is our base cookbook that we use to bootstrap a node and layer additional cookbooks and roles
+    # - install default packages
+    # - configure security
+    # - configure directory as a service (jumpcloud)
+    # - configure zeus... our base user account for managing applications / services
+    #   (if you are going to try and rule the clouds, you might as well invite the god of thunder)
 
-  cookbooks/copyleft-burton
-  # burton is our hubot (a.k.a. Jack Burton)
+    cookbooks/copyleft-burton
+    # burton is our hubot (a.k.a. Jack Burton)
 
-  cookbooks/copyleft-elastic
-  # base install of elastic stack
-  # - elastic
-  # - logstash
-  # - kibana
-  # - beats (filebeats / topbeats)
+    cookbooks/copyleft-elastic
+    # base install of elastic stack
+    # - elastic
+    # - logstash
+    # - kibana
+    # - beats (filebeats / topbeats)
 
-  cookbooks/copyleft-java     
-  # base install of java
+    cookbooks/copyleft-java     
+    # base install of java
 
-  cookbooks/copyleft-nginx
-  # base install of nginx
+    cookbooks/copyleft-nginx
+    # base install of nginx
 
-  cookbooks/copyleft-nodejs
-  # base install of nodejs, npm, and pm2
+    cookbooks/copyleft-nodejs
+    # base install of nodejs, npm, and pm2
 
-  cookbooks/copyleft-postgres
-  # base install and configuration of postgresql database
+    cookbooks/copyleft-postgres
+    # base install and configuration of postgresql database
 
-  cookbooks/copyleft-ruby
-  # base install and configuration of ruby, rvm, ruby-gems and bundler
+    cookbooks/copyleft-ruby
+    # base install and configuration of ruby, rvm, ruby-gems and bundler
 
-  cookbooks/copyleft-tomcat
-  # base install and configuration of tomcat
+    cookbooks/copyleft-tomcat
+    # base install and configuration of tomcat
