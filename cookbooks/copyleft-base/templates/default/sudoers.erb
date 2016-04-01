@@ -20,14 +20,16 @@ Defaults        secure_path="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/
 
 # Cmnd alias specification
 Cmnd_Alias SYSCMDS      = /usr/bin/chef-client
+Cmnd_Alias ZEUS         = /bin/su zeus, /bin/su - zeus, /sbin/service zeus*
 
 
 # User privilege specification
 root    ALL=(ALL:ALL) ALL
+zeus    ALL= NOPASSWD: SYSCMDS
 
 
-# Members of the admin group may gain root privileges
-%admin ALL=(ALL) ALL
+# Members of the sysadmins group may gain root privileges
+%sysadmins ALL=(ALL) ALL
 
 
 # Allow members of group sudo to execute any command
@@ -42,15 +44,4 @@ when 'dev' %>
 %tst_sudoers  ALL=SYSCMDS
 <% when 'prd' %>
 %prd_sudoers  ALL=SYSCMDS
-<% end %>
-
-
-# Host Specific Roles for Host: <%= node['hostname'] %>
-<% case node.['hostname']
-when 'server001' %>
-apache  ALL=(zeus) NOPASSWD: ALL
-<% when 'server002' %>
-apache  ALL=(zeus) NOPASSWD: ALL
-<% when 'server003' %>
-apache  ALL=(zeus) NOPASSWD: ALL
 <% end %>

@@ -22,3 +22,24 @@ node['base']['apt']['purge_packages'].each do |name|
     action :purge
   end
 end
+
+# INSTALL NTP Package
+package 'ntp'
+
+service 'ntp' do
+  action [:enable, :start]
+end
+
+# template '/etc/ntp.conf' do
+#   source 'ntp.conf.erb'
+#   mode 00644
+#   owner 'root'
+#   group 'root'
+#   notifies :run, 'execute[service_ntp_reload]', :immediately
+# end
+
+execute 'service_ntp_reload' do
+  user 'root'
+  command 'service ntp reload'
+  action :nothing
+end

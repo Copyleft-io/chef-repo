@@ -1,8 +1,19 @@
 # copyleft-base for ubuntu 14.04
 
-default['base']['apt']['install_packages'] =  %w{ curl git gparted logwatch vim unzip zip}
+# CONFIGURE BASE USER
+default['base']['user'] = 'zeus'
+default['base']['password'] = 'olympus'
+default['base']['group'] = 'zeus'
+
+# CONFIGURE BASE DIRECTORY
+default['base']['directory'] = '/opt/zeus'
+default['base']['deploy_directory'] = '/opt/zeus/deploy'
+
+# PACKAGES
+default['base']['apt']['install_packages'] =  %w{ curl git gparted logwatch netcat vim unzip zip}
 default['base']['apt']['purge_packages'] =  %w{  }
 
+# SECURITY
 default['base']['security']['permit_root_login'] = 'no'
 default['base']['security']['install_packages'] =  %w{ acct auditd chkrootkit rkhunter }
 

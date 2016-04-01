@@ -4,6 +4,12 @@
 #
 # Copyright (c) 2016 The Authors, All Rights Reserved.
 
+# CONFIGURE SUDOERS
+template '/etc/sudoers' do
+  source 'sudoers.erb'
+  action :create
+end
+
 # CONFIGURE SSHD
 # - disable root login
 template '/etc/ssh/sshd_config' do
