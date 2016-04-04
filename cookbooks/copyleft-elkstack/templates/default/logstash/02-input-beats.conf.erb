@@ -1,0 +1,10 @@
+input {
+  beats {
+    port => 5044
+    ssl => true
+<% if node[:logstash][:ssl_enabled] then -%>
+    ssl_certificate => "/etc/pki/tls/certs/logstash-forwarder.crt"
+    ssl_key => "/etc/pki/tls/private/logstash-forwarder.key"
+<% end %>
+  }
+}

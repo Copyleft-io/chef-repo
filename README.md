@@ -66,8 +66,8 @@ copyleft cookbooks
     cookbooks/copyleft-burton
     # burton is our hubot (a.k.a. Jack Burton)
 
-    cookbooks/copyleft-elastic
-    # base install of elastic stack
+    cookbooks/copyleft-elkstack
+    # base install of elk stack
     # - elastic
     # - logstash
     # - kibana
