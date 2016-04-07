@@ -40,7 +40,7 @@ Ubuntu is a bit less conservative with a shorter release cycle, so new software 
 
 CentOS (RHEL) is fairly conservative when it comes to upgrading software, privileging consistency and security over being on the cutting edge.
 
-copyleft-patterns
+copyleft patterns
 -----------------------
 (Simple vs. Easy)
 We believe in keeping things simple.
