@@ -56,3 +56,6 @@ Thumbs.db
 ehthumbs.db
 Desktop.ini
 $RECYCLE.BIN/
+
+# Special Packages.
+jdk-8u73-linux-x64.rpm
