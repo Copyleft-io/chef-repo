@@ -8,17 +8,18 @@ This cookbook implements the manual Enterprise (EE) Linux Installation procedure
 for the Pentaho data-integration-server as documented by Pentaho.
 https://help.pentaho.com/Documentation/6.0/0F0/0L0
 
-# COPYLEFT COOKBOOK DEPENDENCIES
+This cookbook has dependencies on the following copyleft cookbooks and also requires
+the specific artifacts to be placed in the cookbook files directory which are available
+for download via Pentaho Support Portal for Enterprise Licenses
+
+### COPYLEFT COOKBOOK DEPENDENCIES
 - copyleft-base
 - copyleft-java
 - copyleft-tomcat
 - copyleft-postgres
 
 
-This cookbook requires the following artifacts cookbook/files which are available
-for download via Pentaho Support Portal for Enterprise Licenses
-
-# DEPLOYMENT ARTIFACTS
+### DEPLOYMENT ARTIFACTS
 - di-license-installer.zip -> pentaho/
 - di-jdbc-distribution-utility.zip -> pentaho/SERVER
 - di-pentaho-data.zip -> pentaho/server/data-integration-server
@@ -27,15 +28,15 @@ for download via Pentaho Support Portal for Enterprise Licenses
 - pentaho-style.war -> Tomcat: pentaho/server/data-integration-server/<your tomcat installation directory>/webapps
 - PentahoBIPlatform_OSS_Licenses.html -> pentaho/server/data-integration-server
 
-# Pentaho License Files
+### Pentaho License Files
 - Pentaho_PDI_EE.lic
 - PentahoBIPlatform_OSS_Licenses.html
 
-# SQL ARTIFACTS
+### SQL ARTIFACTS
 - create_jcr_postresql.sql
 - create_quartz_postgresql.sql
 - create_repository_postgresql.sql
 - pentaho_mart_postgresql.sql
 
-# JAR Files
+### JAR Files
 postgresql-9.3-1104.jdbc4.jar
