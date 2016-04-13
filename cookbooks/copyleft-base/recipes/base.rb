@@ -33,6 +33,14 @@ directory node['base']['directory'] do
   action :create
 end
 
+# CREATE ZEUS .bash_profile
+template "#{node.base.directory}/.bash_profile" do
+  source 'bash_profile.erb'
+  owner node['base']['user']
+  group node['base']['group']
+  mode '0644'
+end
+
 # CREATE DEPLOY DIRECTORY
 # This is our default location where downloaded packages
 # will be staged for deployment
