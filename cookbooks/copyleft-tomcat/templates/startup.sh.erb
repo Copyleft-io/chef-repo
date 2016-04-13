@@ -23,8 +23,8 @@
 
 . ~/.bash_profile
 
-CATALINA_OUT=/opt/rundeck/copyleft-logs/catalina.out
-CATALINA_HOME=<%= node['tomcat']['directory'] %>
+CATALINA_OUT=<%= node['tomcat']['directory'] %>/logs/catalina.out
+CATALINA_HOME=<%= node['tomcat']['directory'] %>/tomcat
 CATALINA_PID=<%= node['tomcat']['catalina_pid_file'] %>
 export CATALINA_HOME CATALINA_OUT CATALINA_PID
 
@@ -32,7 +32,7 @@ JAVA_ENDORSED_DIRS=<%= File.join(node['tomcat']['directory'], "endorsed") %>
 export JAVA_ENDORSED_DIRS
 
 
-JAVA_OPTS="-XX:+UnlockCommercialFeatures -XX:+FlightRecorder -Xloggc:c/opt/zeus/copyleft-logs/gc.log -verbose:gc -XX:+PrintGCDetails -XX:+PrintGCDateStamps -XX:+PrintGCTimeStamps -Xms<%= node['tomcat']['tuning']['xms'] %>K -Xmx<%= node['tomcat']['tuning']['xmx'] %>K -XX:MaxPermSize=<%= node['tomcat']['tuning']['maxperm'] %>K"
+JAVA_OPTS="-XX:+UnlockCommercialFeatures -XX:+FlightRecorder -Xloggc:c/opt/zeus/logs/gc.log -verbose:gc -XX:+PrintGCDetails -XX:+PrintGCDateStamps -XX:+PrintGCTimeStamps -Xms<%= node['tomcat']['tuning']['xms'] %>K -Xmx<%= node['tomcat']['tuning']['xmx'] %>K -XX:MaxPermSize=<%= node['tomcat']['tuning']['maxperm'] %>K"
 export JAVA_OPTS
 
 #Hack to fix Tomcat relative path issues
