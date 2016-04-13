@@ -1,0 +1,23 @@
+---
+driver:
+  name: vagrant
+  network:
+  - ["private_network", {ip: "192.168.168.168"}]
+  customize:
+    memory: 6144
+
+provisioner:
+  name: chef_zero
+
+platforms:
+  - name: ubuntu-14.04
+
+suites:
+  - name: default
+    run_list:
+      - recipe[copyleft-base::default]
+      - recipe[copyleft-java::default]
+      - recipe[copyleft-tomcat::default]
+      - recipe[copyleft-postgres::default]
+      - recipe[copyleft-pentaho-di::default]
+    attributes:

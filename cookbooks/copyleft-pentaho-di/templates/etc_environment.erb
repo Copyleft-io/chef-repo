@@ -1,0 +1,2 @@
+export PENTAHO_INSTALLED_LICENSE_PATH=/opt/rundeck/.pentaho/.installedLicenses.xml
+export CATALINA_OPTS="-Djava.awt.headless=true -Xms<%= node['pentaho']['di']['tuning']['xms'] %>m -Xmx<%= node['pentaho']['di']['tuning']['xmx'] %>m -XX:MaxPermSize=256m -Dsun.rmi.dgc.client.gcInterval=3600000 -Dsun.rmi.dgc.server.gcInterval=3600000 -Dpentaho.solutionpath=/opt/zeus/pentaho/server/data-integration-server/pentaho-solutions"
