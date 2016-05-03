@@ -9,7 +9,7 @@ require 'spec_helper'
 describe 'copyleft-elkstack::default' do
   context 'When all attributes are default, on an unspecified platform' do
     let(:chef_run) do
-      runner = ChefSpec::ServerRunner.new
+      runner = ChefSpec::SoloRunner.new
       runner.converge(described_recipe)
     end
 
@@ -18,12 +18,17 @@ describe 'copyleft-elkstack::default' do
     end
 
     it 'creates 3 yum repos for Elastic products'
-    it 'installs the logstash package'
-    it 'installs the kibana package'
-    it 'Configures logstash diverts for filebeats data into the elasticsearch \
-      service'
-    it 'starts the logstash service'
-    it 'configures kibana to read data from elasticsearch'
-    it 'starts the kibana service'
+    it 'install and configure the elasticsearch package' do
+      expect(chef_run).to include_recipe 'copyleft-elkstack::elasticsearch'
+    end
+    it 'install and configure the logstash package' do
+      expect(chef_run).to include_recipe 'copyleft-elkstack::logstash'
+    end
+    it 'install and configures the kibana package' do
+      expect(chef_run).to include_recipe 'copyleft-elkstack::kibana'
+    end
+    it 'install and configure the nginx package' do
+      expect(chef_run).to include_recipe 'copyleft-elkstack::nginx'
+    end
   end
 end

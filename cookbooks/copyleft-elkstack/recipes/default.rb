@@ -33,3 +33,4 @@ end
 include_recipe 'copyleft-elkstack::elasticsearch'
 include_recipe 'copyleft-elkstack::logstash'
 include_recipe 'copyleft-elkstack::kibana'
+include_recipe 'copyleft-elkstack::nginx'

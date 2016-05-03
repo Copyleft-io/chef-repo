@@ -1,0 +1,37 @@
+# Default task: Ruby syntax and style, Cookbook Style, then converge and
+# verify the cookbook
+# Leave the VM up and running for further development and testing
+task default:  [:rubocop, :foodcritic, :rspec, :kitchen_converge, :kitchen_verify]
+# Test task: Ruby syntax and style, Cookbook style, then converge, verify and
+# destroy the VM.
+# Run this if you are REALLY confident in you changes.
+task test: [:rubocop, :foodcritic, :kitchen_test]
+
+desc 'Run Ruby style checks with Rubocop'
+task :rubocop do
+  sh 'rubocop'
+end
+
+desc 'Run Chef style checks with Foodcritic'
+task :foodcritic do
+  sh 'foodcritic --tags ~FC003 .'
+end
+
+desc 'Run rspec unit tests.'
+task :rspec do
+  sh 'chef exec rspec --color'
+end
+
+desc 'Run kitchen test'
+task :kitchen_test do
+  sh 'kitchen test'
+end
+
+desc 'Run kitchen converge'
+task :kitchen_converge do
+  sh 'kitchen converge'
+end
+desc 'Run kitchen verify'
+task :kitchen_verify do
+  sh 'kitchen verify'
+end
