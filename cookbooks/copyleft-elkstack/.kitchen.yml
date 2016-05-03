@@ -1,15 +1,20 @@
 ---
 driver:
   name: vagrant
+  network:
+    # Elastic Search Port
+    - ["forwarded_port", {guest: 9200, host: 9200, auto_correct: true}]
+    # Kibana Native Port
+    - ["forwarded_port", {guest: 5600, host: 5600, auto_correct: true}]
+    # Logstash Port
+    - ["forwarded_port", {guest: 5044, host: 5044, auto_correct: true}]
+    # nginx Proxy for Kibana
+    - ["forwarded_port", {guest: 80, host: 8080, auto_correct: true}]
+  customize:
+    natdnshostresolver1: "on"
 
 provisioner:
   name: chef_zero
-  - ["forwarded_port", {guest: 9200, host: 9200, auto_correct: true}]
-  - ["forwarded_port", {guest: 5600, host: 5600, auto_correct: true}]
-  - ["forwarded_port", {guest: 5044, host: 5044, auto_correct: true}]
-  - ["forwarded_port", {guest: 80, host: 8080, auto_correct: true}]
-
-
 
 # Uncomment the following verifier to leverage Inspec instead of Busser (the
 # default verifier)

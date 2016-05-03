@@ -1,1 +1,1 @@
-default[:logstash][:ssl_enabled] = false
+default['logstash']['ssl_enabled'] = false
