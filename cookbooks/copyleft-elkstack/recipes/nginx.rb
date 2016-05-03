@@ -15,8 +15,8 @@ execute 'htpasswd -bc /etc/nginx/htpasswd.users kibanaadmin kibanaadmin' do
 end
 
 template '/etc/nginx/nginx.conf' do
- source 'nginx.conf.erb'
- notifies :restart, 'service[nginx]', :delayed
+  source 'nginx.conf.erb'
+  notifies :restart, 'service[nginx]', :delayed
 end
 
 template 'kibana.conf' do
