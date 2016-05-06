@@ -4,5 +4,4 @@ maintainer_email 'you@example.com'
 license          'all_rights'
 description      'Installs/Configures copyleft-jumpcloud'
 long_description 'Installs/Configures copyleft-jumpcloud'
-version          '0.1.0'
-
+version          '1.0.0'
