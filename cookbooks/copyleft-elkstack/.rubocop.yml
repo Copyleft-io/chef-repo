@@ -1,0 +1,10 @@
+LineLength:
+  Max: 250
+Style/FileName:
+  Enabled: false
+AllCops:
+  Exclude:
+    - Rakefile
+    - Vagrantfile
+    - Thorfile
+    - metadata.rb

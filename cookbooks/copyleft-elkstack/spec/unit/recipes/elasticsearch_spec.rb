@@ -9,7 +9,7 @@ require 'spec_helper'
 describe 'copyleft-elkstack::elasticsearch' do
   context 'When all attributes are default, on an unspecified platform' do
     let(:chef_run) do
-      runner = ChefSpec::ServerRunner.new
+      runner = ChefSpec::SoloRunner.new
       runner.converge(described_recipe)
     end
 
@@ -24,12 +24,12 @@ describe 'copyleft-elkstack::elasticsearch' do
 
     it 'creates the elasticseach.yml file from template' do
       expect(chef_run).to create_template('/etc/elasticsearch/elasticsearch.yml').with(
-        user: 'elasticsearch'
+        user: 'elasticsearch',
         group: 'elasticsearch'
       )
     end
 
-    it 'Enables and starts the elasticseach service' do
+    it 'enables and starts the elasticseach service' do
       expect(chef_run).to enable_service('elasticsearch')
       expect(chef_run).to start_service('elasticsearch')
     end
