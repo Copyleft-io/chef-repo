@@ -1,4 +1,4 @@
-# copyleft-base for ubuntu 14.04
+# copyleft-base for ubuntu 16.04
 
 # CONFIGURE BASE USER
 default['base']['user'] = 'zeus'
@@ -11,7 +11,7 @@ default['base']['deploy_directory'] = '/opt/zeus/deploy'
 default['base']['logs_directory'] = '/opt/zeus/logs'
 
 # PACKAGES
-default['base']['apt']['install_packages'] =  %w{ curl git gparted logwatch netcat vim unzip zip}
+default['base']['apt']['install_packages'] =  %w{ curl expect git gparted logwatch netcat vim unzip zip}
 default['base']['apt']['purge_packages'] =  %w{  }
 
 # SECURITY
