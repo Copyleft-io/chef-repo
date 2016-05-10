@@ -7,3 +7,4 @@ long_description 'Installs/Configures Base Ubuntu 16.04 Instance for the Hobbyis
 version          '1.0.0'
 
 depends 'chef-client'
+depends 'apt'

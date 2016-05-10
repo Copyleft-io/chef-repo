@@ -5,8 +5,12 @@
 # Copyright (c) 2016 The Authors, All Rights Reserved.
 
 # UPDATE apt-get
-execute "apt-get update" do
-  command "apt-get update"
+# execute "apt-get update" do
+#   command "apt-get update"
+# end
+apt_update 'apt_update_periodic' do
+  frequency 86400
+  action :periodic
 end
 
 # INSTALL Base Packages
