@@ -17,6 +17,7 @@ template '/etc/ssh/sshd_config' do
   owner 'root'
   group 'root'
   mode '0644'
+  action :create
   notifies :run, 'execute[service_ssh_restart]', :immediately
 end
 
@@ -40,6 +41,7 @@ template '/etc/rkunter.conf' do
   owner 'root'
   group 'root'
   mode '0644'
+  action :create
   #notifies :run, 'execute[rkhunter_restart]', :delayed
 end
 
@@ -48,6 +50,7 @@ template '/etc/default/rkunter' do
   owner 'root'
   group 'root'
   mode '0644'
+  action :create
   #notifies :run, 'execute[rkhunter_restart]', :delayed
 end
 
@@ -64,6 +67,7 @@ template '/etc/audit/rules.d/audit.rules' do
   owner 'root'
   group 'root'
   mode '0640'
+  action :create
 end
 
 

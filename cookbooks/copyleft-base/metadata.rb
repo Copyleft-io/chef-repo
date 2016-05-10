@@ -5,3 +5,5 @@ license          'GNU General Public License 3.0'
 description      'Installs/Configures Base Ubuntu 16.04 Instance'
 long_description 'Installs/Configures Base Ubuntu 16.04 Instance for the Hobbyists at Copyleft.io'
 version          '1.0.0'
+
+depends 'chef-client'
