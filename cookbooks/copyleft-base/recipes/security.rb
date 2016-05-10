@@ -18,15 +18,9 @@ template '/etc/ssh/sshd_config' do
   group 'root'
   mode '0644'
   action :create
-  notifies :run, 'execute[service_ssh_restart]', :immediately
+  notifies :restart, 'service[ssh]', :delayed
 end
 
-# RESTART SSH DAEMON FOR CONFIG CHANGES TO TAKE EFFECT
-# ONLY RUN IF sshd_config TEMPLATE IS UPDATED
-execute "service_ssh_restart" do
-  command "service ssh restart"
-  action :nothing
-end
 
 # INSTALL Security Packages
 node['base']['security']['install_packages'].each do |name|
@@ -70,6 +64,10 @@ template '/etc/audit/rules.d/audit.rules' do
   action :create
 end
 
+# CONFIGURE SSH SERVICE TO START ON BOOT
+service "ssh" do
+  action [:enable, :start]
+end
 
 # CONFIGURE ACCT SERVICE TO START ON BOOT
 service "acct" do
