@@ -29,6 +29,10 @@ describe 'copyleft-elkstack::elasticsearch' do
       )
     end
 
+    it 'creates the rpm for hte JDK 8 install' do
+      expect(chef_run).to create_cookbook_file('jdk-8u73-linux-x64.rpm')
+    end
+
     it 'enables and starts the elasticseach service' do
       expect(chef_run).to enable_service('elasticsearch')
       expect(chef_run).to start_service('elasticsearch')

@@ -16,5 +16,17 @@ describe 'copyleft-elkstack::logstash' do
     it 'converges successfully' do
       expect { chef_run }.to_not raise_error
     end
+    it 'installs packages for logstash' do
+      expect(chef_run).to install_package('logstash')
+    end
+    it 'creates logstash templates' do
+      expect(chef_run).to create_template('02-input-beats.conf')
+      expect(chef_run).to create_template('50-filter-syslog.conf')
+      expect(chef_run).to create_template('90-output-elastic.conf')
+    end
+    it 'starts logstash' do
+      expect(chef_run).to enable_service('logstash')
+      expect(chef_run).to start_service('logstash')
+    end
   end
 end

@@ -16,5 +16,15 @@ describe 'copyleft-elkstack::kibana' do
     it 'converges successfully' do
       expect { chef_run }.to_not raise_error
     end
+    it 'installs packages for kibana' do
+      expect(chef_run).to install_package('kibana')
+    end
+    it 'creates logstash templates' do
+      expect(chef_run).to create_template('kibana.yml')
+    end
+    it 'starts kibana' do
+      expect(chef_run).to enable_service('kibana')
+      expect(chef_run).to start_service('kibana')
+    end
   end
 end
