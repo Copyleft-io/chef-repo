@@ -9,6 +9,8 @@ default['base']['group'] = 'zeus'
 default['base']['directory'] = '/opt/zeus'
 default['base']['deploy_directory'] = '/opt/zeus/deploy'
 default['base']['logs_directory'] = '/opt/zeus/logs'
+default['base']['var_chef_directory'] = '/var/chef'
+default['base']['versions_directory'] = '/var/chef/versions'
 
 # PACKAGES
 default['base']['apt']['install_packages'] =  %w{ curl expect git gparted logwatch netcat vim unzip zip}
