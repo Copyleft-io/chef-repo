@@ -30,7 +30,7 @@ package 'curl'
 package 'sudo'
 package 'bash'
 execute 'agent_install' do
-  command "curl --silent --show-error --header #{node['jumpcloud']['x_connect_key']} #{node['jumpcloud']['kickstart_url']} | sudo bash"
+  command "curl --silent --show-error --header #{node['jumpcloud']['x_connect_key']} #{node['jumpcloud']['kickstart_url']} | bash"
   path [ '/sbin', '/bin', '/usr/sbin', '/usr/bin' ]
   timeout 600
   creates '/opt/jc'

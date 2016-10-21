@@ -44,7 +44,7 @@ end
 # CREATE DEPLOY DIRECTORY
 # This is our default location where downloaded packages
 # will be staged for deployment
-directory  node['base']['deploy_directory'] do
+directory node['base']['deploy_directory'] do
   owner node['base']['user']
   group node['base']['group']
   mode '0755'
@@ -53,9 +53,28 @@ end
 
 # CREATE LOGS DIRECTORY
 # This is our default location for logs
-directory  node['base']['logs_directory'] do
+directory node['base']['logs_directory'] do
   owner node['base']['user']
   group node['base']['group']
+  mode '0755'
+  action :create
+end
+
+# CREATE VERSIONS DIRECTORY
+# This is our default var location for chef
+directory node['base']['var_chef_directory'] do
+  owner 'root'
+  group 'root'
+  mode '0755'
+  action :create
+end
+
+# CREATE VERSIONS DIRECTORY
+# This is our default location where version files are stored
+# for applications deployed by chef
+directory node['base']['versions_directory'] do
+  owner 'root'
+  group 'root'
   mode '0755'
   action :create
 end

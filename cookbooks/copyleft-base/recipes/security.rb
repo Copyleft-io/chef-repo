@@ -30,7 +30,7 @@ node['base']['security']['install_packages'].each do |name|
 end
 
 # CONFIGURE RKHUNTER aka Root Kit Hunter
-template '/etc/rkunter.conf' do
+template '/etc/rkhunter.conf' do
   source 'rkhunter.conf.erb'
   owner 'root'
   group 'root'
@@ -39,7 +39,7 @@ template '/etc/rkunter.conf' do
   #notifies :run, 'execute[rkhunter_restart]', :delayed
 end
 
-template '/etc/default/rkunter' do
+template '/etc/default/rkhunter' do
   source 'rkhunter-default.erb'
   owner 'root'
   group 'root'

@@ -10,11 +10,16 @@ provisioner:
   name: chef_zero
 
 platforms:
-  - name: ubuntu-16.04
+  - name: ubuntu-14.04
 
 suites:
   - name: default
     run_list:
       - recipe[copyleft-base::default]
-      - recipe[copyleft-jumpcloud::default]
+      - recipe[copyleft-docker::install]
+    verifier:
+      inspec_tests:
+        - test/recipes
     attributes:
+      docker:
+        repo: 'deb https://apt.dockerproject.org/repo ubuntu-trusty main'
