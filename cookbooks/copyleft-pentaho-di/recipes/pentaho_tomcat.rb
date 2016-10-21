@@ -49,6 +49,7 @@
 # DI Server ports (9080 and 9443).
 #
 # Save the changes and close the file.
+tomcat_bin_dir = "#{node['tomcat']['directory']}/apache-tomcat-#{node['tomcat']['version']}/bin"
 
 template "#{node['pentaho']['tomcat_directory']}/conf/server.xml" do
   source 'tomcat-server.xml.erb'
@@ -101,23 +102,23 @@ link "#{node['pentaho']['directory']}/server/data-integration-server/tomcat" do
 end
 
 
-# # MODIFY TOMCAT LINUX STARTUP SCRIPT
-# execute 'stop' do
-#   user node['tomcat']['user']
-#   command ".#{tomcat_bin_dir}/shutdown.sh"
-#   action :nothing
-#   notifies :run, 'execute[start]', :delayed
-# end
-#
-# execute 'kill' do
-#   user node['tomcat']['user']
-#   command ".#{tomcat_bin_dir}/killtomcat.sh"
-#   action :nothing
-#   subscribes :run, 'execute[stop]', :immediately
-# end
-#
-# execute 'start' do
-#   user node['tomcat']['user']
-#   command ".#{tomcat_bin_dir}/startup.sh"
-#   not_if "ps -ef | grep java | grep #{node['tomcat']['user']} | grep -v grep"
-# end
+## TOMCAT LINUX STARTUP SCRIPT
+execute 'stop' do
+  user node['tomcat']['user']
+  command ".#{tomcat_bin_dir}/shutdown.sh"
+  action :nothing
+  notifies :run, 'execute[start]', :delayed
+end
+
+execute 'kill' do
+  user node['tomcat']['user']
+  command ".#{tomcat_bin_dir}/killtomcat.sh"
+  action :nothing
+  subscribes :run, 'execute[stop]', :immediately
+end
+
+execute 'start' do
+  user node['tomcat']['user']
+  command ".#{tomcat_bin_dir}/startup.sh"
+  not_if "ps -ef | grep java | grep #{node['tomcat']['user']} | grep -v grep"
+end

@@ -21,7 +21,7 @@
 include_recipe 'copyleft-base'
 include_recipe 'copyleft-java'
 include_recipe 'copyleft-tomcat'
-tomcat_bin_dir = "#{node['tomcat']['directory']}/apache-tomcat-#{node['tomcat']['version']}/bin"
+
 
 # INCLUDE COOKBOOK RECIPES
 
@@ -40,8 +40,8 @@ include_recipe 'copyleft-pentaho-di::pentaho_repository'
 ## DOWNLOAD AND INSTALL JAR FILE DEPENDENCIES INCLUDING JDBC DRIVERS
 include_recipe 'copyleft-pentaho-di::pentaho_jar_files'
 
-## PERFORM TOMCAT CONFIGURATIONS
-include_recipe 'copyleft-pentaho-di::pentaho_tomcat'
-
 ## INSTALL PENTAHO LICENSES
 include_recipe 'copyleft-pentaho-di::pentaho_licenses'
+
+## PERFORM TOMCAT CONFIGURATIONS
+include_recipe 'copyleft-pentaho-di::pentaho_tomcat'

@@ -1,0 +1,21 @@
+---
+driver:
+  name: vagrant
+  network:
+  - ["private_network", {ip: "192.168.168.168"}]
+  customize:
+    memory: 2048
+
+provisioner:
+  name: chef_zero
+
+platforms:
+  - name: ubuntu-14.04
+
+suites:
+  - name: default
+    run_list:
+      - recipe[copyleft-base::default]
+      - recipe[copyleft-postgres::default]
+      - recipe[copyleft-graphite::default]
+    attributes:

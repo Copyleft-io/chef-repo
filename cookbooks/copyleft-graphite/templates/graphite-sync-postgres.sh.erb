@@ -1,0 +1,13 @@
+#!/usr/bin/expect
+spawn python manage.py syncdb
+expect "Would you like to create one now? (yes/no):"
+send "yes"
+expect "Username (leave blank to use 'root'):"
+send "graphite"
+expect "Email address:"
+send ""
+expect "Password:"
+send "password"
+expect "Password (again):"
+send "password"
+close
