@@ -17,10 +17,8 @@ suites:
     run_list:
       - recipe[copyleft-base::default]
       - recipe[copyleft-consul::default]
-      - recipe[copyleft-docker::install]
+      - recipe[copyleft-consul::server]
     verifier:
       inspec_tests:
         - test/recipes
     attributes:
-      docker:
-        repo: 'deb https://apt.dockerproject.org/repo ubuntu-trusty main'

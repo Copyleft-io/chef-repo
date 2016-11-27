@@ -1,0 +1,150 @@
+#!/bin/bash
+#
+# $prog
+#
+# chkconfig: 345 70 30
+# description: Slave daemon for consul.
+
+# Source function library.
+# . /etc/init.d/functions
+
+RETVAL=0
+prog=consul
+LOGFILE=<%= @dir %>/$prog.log
+PIDFILE=<%= @dir %>/$prog.pid
+USERNAME=<%= @user %>
+COMMAND="consul agent <%= @startup_type %> <%= @options.map{|k,v| "-#{k} #{v}"}.join(' ') %> -pid-file $PIDFILE "
+
+start() {
+  status $prog > /dev/null && echo "$prog already started (pid $(cat $PIDFILE))$(success)" && return 0
+
+  echo -n "Starting $prog"
+  daemon --user "$USERNAME" --pidfile "$PIDFILE" $COMMAND > $LOGFILE 2>&1 &
+  RETVAL=$?
+  if [ $RETVAL = 0 ]; then
+      success
+  else
+      failure
+  fi
+  echo
+  return $RETVAL
+}
+
+stop() {
+  echo -n "Shutting down $prog"
+  consul leave
+  killproc $prog
+  RETVAL=$?
+  echo
+  return $RETVAL
+}
+
+# A function to stop a program.
+killproc() {
+	local RC killlevel= base pid pid_file= delay
+
+	RC=0; delay=3
+	# Test syntax.
+	if [ "$#" -eq 0 ]; then
+		echo $"Usage: killproc [-p pidfile] [ -d delay] {program} [-signal]"
+		return 1
+	fi
+	if [ "$1" = "-p" ]; then
+		pid_file=$2
+		shift 2
+	fi
+	if [ "$1" = "-d" ]; then
+		delay=$2
+		shift 2
+	fi
+
+
+	# check for second arg to be kill level
+	[ -n "${2:-}" ] && killlevel=$2
+
+        # Save basename.
+        base=${1##*/}
+
+        # Find pid.
+	__pids_var_run "$1" "$pid_file"
+	RC=$?
+	if [ -z "$pid" ]; then
+		if [ -z "$pid_file" ]; then
+			pid="$(__pids_pidof "$1")"
+		else
+			[ "$RC" = "4" ] && { failure $"$base shutdown" ; return $RC ;}
+		fi
+	fi
+
+        # Kill it.
+        if [ -n "$pid" ] ; then
+                [ "$BOOTUP" = "verbose" -a -z "${LSB:-}" ] && echo -n "$base "
+		if [ -z "$killlevel" ] ; then
+		       if checkpid $pid 2>&1; then
+			   # TERM first, then KILL if not dead
+			   kill -TERM $pid >/dev/null 2>&1
+			   usleep 100000
+			   if checkpid $pid && sleep 1 &&
+			      checkpid $pid && sleep $delay &&
+			      checkpid $pid ; then
+                                kill -KILL $pid >/dev/null 2>&1
+				usleep 100000
+			   fi
+		        fi
+			checkpid $pid
+			RC=$?
+			[ "$RC" -eq 0 ] && failure $"$base shutdown" || success $"$base shutdown"
+			RC=$((! $RC))
+		# use specified level only
+		else
+		        if checkpid $pid; then
+	                	kill $killlevel $pid >/dev/null 2>&1
+				RC=$?
+				[ "$RC" -eq 0 ] && success $"$base $killlevel" || failure $"$base $killlevel"
+			elif [ -n "${LSB:-}" ]; then
+				RC=7 # Program is not running
+			fi
+		fi
+	else
+		if [ -n "${LSB:-}" -a -n "$killlevel" ]; then
+			RC=7 # Program is not running
+		else
+			failure $"$base shutdown"
+			RC=0
+		fi
+	fi
+
+        # Remove pid file if any.
+	if [ -z "$killlevel" ]; then
+            rm -f "${pid_file:-/var/run/$base.pid}"
+	fi
+	return $RC
+}
+
+
+#TODO add method to reload (consul reload)
+case "$1" in
+    start)
+        start
+        ;;
+    stop)
+        stop
+        ;;
+    status)
+        status $prog
+        RETVAL=$?
+        ;;
+    reload)
+        consul reload
+        ;;
+    restart)
+        stop
+        start
+        RETVAL=$?
+        ;;
+    *)
+        echo "Usage: $prog {start|stop|status}"
+        RETVAL=3
+        ;;
+esac
+exit $RETVAL

@@ -1,5 +1,6 @@
 source 'https://supermarket.chef.io'
 
 cookbook 'copyleft-base', path: '../copyleft-base'
+cookbook 'copyleft-consul', path: '../copyleft-consul'
 cookbook 'copyleft-docker', path: '.'
 cookbook 'docker', '~> 2.0'
